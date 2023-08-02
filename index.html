@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Temperature Converter</title>
+  <style>
+    *{
+      margin: 0;padding: 0;
+       background-image: radial-gradient(rgb(97, 218, 248),aqua) 
+    }
+    .background img{
+      opacity: 0.5;
+    }
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      width: 300px;
+      margin: 50px auto;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      /* color: white; */
+      border: none;
+      cursor: pointer;
+    }
+
+    #result {
+      margin-top: 10px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="background">
+    <!-- <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9cyFleSuQ8V56d85qiD6GCwtdBt8gTEnEgw&usqp=CAU" alt="" width="100%"> -->
+  <div class="container">
+    <h2>Temperature Converter</h2>
+    <label>
+      <input type="radio" name="inputUnit" value="celsius" checked />
+      Celsius
+    </label>
+    <label>
+      <input type="radio" name="inputUnit" value="fahrenheit" />
+      Fahrenheit
+    </label>
+    <label>
+      <input type="radio" name="inputUnit" value="kelvin" />
+      Kelvin
+    </label>
+
+    <input type="number" id="temperature" placeholder="Enter temperature" />
+
+    <button onclick="convertTemperature()">Convert</button>
+
+    <div id="result"></div>
+  </div>
+  </div>
+
+
+  <script>
+    function convertTemperature() {
+      const inputUnit = document.querySelector('input[name="inputUnit"]:checked').value;
+      const temperatureValue = parseFloat(document.getElementById("temperature").value);
+
+      let convertedToCelsius;
+
+      if (inputUnit === "celsius") {
+        convertedToCelsius = temperatureValue;
+      } else if (inputUnit === "fahrenheit") {
+        convertedToCelsius = (temperatureValue - 32) * (5 / 9);
+      } else if (inputUnit === "kelvin") {
+        convertedToCelsius = temperatureValue - 273.15;
+      }
+
+      const convertedToFahrenheit = (convertedToCelsius * 9/5) + 32;
+      const convertedToKelvin = convertedToCelsius + 273.15;
+
+      document.getElementById("result").innerText = `Converted Temperature:\nCelsius: ${convertedToCelsius.toFixed(2)} °C\nFahrenheit: ${convertedToFahrenheit.toFixed(2)} °F\nKelvin: ${convertedToKelvin.toFixed(2)} K`;
+    }
+  </script>
+
+</body>
+
+</html>
